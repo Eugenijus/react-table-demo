@@ -1,7 +1,7 @@
 # react-table-demo
 react-table-demo
 
-##Task:
+## Task:
 
 - [ ] Use any public API or make own to load JSON with 5000+ records
 - [x] Use vanilla js or any framework you like to implement data representation table (at least 3 columns)
