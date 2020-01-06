@@ -1,13 +1,12 @@
 import React from 'react';
 
 import './App.css';
-import Cars from './components/Cars';
+import CarsContainer from './components/CarsContainer';
 
 function App() {
   return (
     <div>
-      <h1>Testing REST API</h1>
-      <Cars />
+      <CarsContainer />
     </div>
   );
 }
