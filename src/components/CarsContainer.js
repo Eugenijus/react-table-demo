@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
+import { data } from '../mockData/data';
 import CarsView from './CarsView';
 
 const Styles = styled.div`
@@ -44,14 +45,20 @@ class CarsContainer extends Component {
   }
 
   async componentDidMount() {
-    try {
-      const response = await axios.get('https://egis123.free.beeceptor.com/cars');
-      const cars = response.data.map((car, index) => ({ ...car, key: index}));
-      console.log('cars: ', cars);
-      this.setState({ cars });
-    } catch (error) {
-      this.setState({ error: error.response.data });
-      console.error(error.response);
+    const tooManyRequests = true;
+    if (tooManyRequests) {
+      const numberedData = data.map((car, index) => ({ ...car, key: index}));
+      this.setState({ cars: numberedData });
+    } else {
+      try {
+        const response = await axios.get('https://egis123.free.beeceptor.com/cars');
+        const cars = response.data.map((car, index) => ({ ...car, key: index}));
+        console.log('cars: ', cars);
+        this.setState({ cars });
+      } catch (error) {
+        this.setState({ error: error.response.data });
+        console.error(error.response);
+      }
     }
   }
 
