@@ -53,7 +53,6 @@ class CarsContainer extends Component {
       try {
         const response = await axios.get('https://egis123.free.beeceptor.com/cars');
         const cars = response.data.map((car, index) => ({ ...car, key: index}));
-        console.log('cars: ', cars);
         this.setState({ cars });
       } catch (error) {
         this.setState({ error: error.response.data });
@@ -76,16 +75,8 @@ class CarsContainer extends Component {
       <Styles>
         <h1>Retro cars (70-80s)</h1>
         <CarsView columns={columns} data={cars} />
-        {/* <div style={{ margin: 10 }} />
-        <ol>
-          {cars.map((car, i) => (
-            <li key={i}>
-              {this.capitalize(car.Name)} | {car.Year} | {car.Horsepower} HPS | {car.Origin}
-            </li>)
-          )}
-        </ol> */}
       </Styles>
-    )
+    );
   }
 }
 

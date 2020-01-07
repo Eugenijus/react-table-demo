@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useTable, useSortBy } from 'react-table';
+import { useTable, useSortBy, usePagination } from 'react-table';
+import PaginationView from './PaginationView';
 
 const Styles = styled.div`
   padding: 1rem;
@@ -29,6 +30,9 @@ const Styles = styled.div`
       }
     }
   }
+  .pagination {
+    padding: 0.5rem;
+  }
 `;
 
 const CarsView = ({ columns, data }) => {
@@ -36,21 +40,50 @@ const CarsView = ({ columns, data }) => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
     prepareRow,
+    rows,
+    page,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    state: { pageIndex, pageSize },
   } = useTable(
     {
       columns,
       data,
+      initialState: { pageIndex: 0 },
     },
-    useSortBy
+    useSortBy,
+    usePagination,
   );
-  const firstPageRows = rows.slice(0, 20);
-    
-  console.log('firstPageRows: ', firstPageRows);
-  console.log('headerGroups: ', headerGroups);
+
+  const paginationProps = {
+    canPreviousPage: canPreviousPage,
+    canNextPage: canNextPage,
+    pageOptions: pageOptions,
+    pageCount: pageCount,
+    gotoPage: gotoPage,
+    nextPage: nextPage,
+    previousPage: previousPage,
+    setPageSize: setPageSize,
+    pageIndex: pageIndex,
+    pageSize: pageSize,
+    rows: rows,
+  };
+  // const firstPageRows = rows.slice(0, 20);
+
   return (
     <Styles>
+      <div className="pagination">
+        <PaginationView
+          {...paginationProps}
+        />
+      </div>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
@@ -74,7 +107,7 @@ const CarsView = ({ columns, data }) => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map(
+          {page.map(
             (row, i) => {
               prepareRow(row);
               return (
@@ -89,8 +122,13 @@ const CarsView = ({ columns, data }) => {
           )}
         </tbody>
       </table>
+      <div className="pagination">
+        <PaginationView
+          {...paginationProps}
+        />
+      </div>
     </Styles>
-  )
+  );
 }
 
 export default CarsView;
