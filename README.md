@@ -7,7 +7,8 @@ react-table-demo
 - [x] Use vanilla js or any framework you like to implement data representation table (at least 3 columns)
 - [x] Click on any column header it should sort the table by particular column, next click should reverse order.
 - [x] Add pagination. Leave the possibility to see all records at once.
-- [ ] Output last clicked table cell data somewhere on the screen outside table. Change color of last clicked row.
+- [ ] Output last clicked table cell data somewhere on the screen outside table.
+- [ ] Change color of last clicked row.
 - [ ] Have a strong concern about performance
 - [x] Commit source to a public repository (GitHub) and send the link
-- [ ]  Would be nice to have a live demo online
+- [ ] Would be nice to have a live demo online
