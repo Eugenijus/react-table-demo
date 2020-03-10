@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import CarsContainer from './components/CarsContainer';
+import CarsContainer from './components/Cars/CarsContainer';
 
 function App() {
   return (
